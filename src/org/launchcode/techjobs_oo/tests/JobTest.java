@@ -1,6 +1,5 @@
-package org.launchcode.techjobs_oo.Tests;
+package org.launchcode.techjobs_oo.tests;
 
-import jdk.jfr.StackTrace;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,4 +47,35 @@ public class JobTest {
         assertEquals(jobTest3.equals(jobTest4), false);
     }
 
+    @Test
+    public void testJobToString(){
+            String output =  "\nID: " + jobTest3.getId() + "\n" +
+                    "Name : " + jobTest3.getName() + "\n" +
+                    "Employer: " + jobTest3.getEmployer().getValue() + "\n" +
+                    "Location: " + jobTest3.getLocation().getValue() + "\n" +
+                    "Position Type: " + jobTest3.getPositionType().getValue() + "\n" +
+                    "Core Competency: " + jobTest3.getCoreCompetency().getValue() + "\n";
+            assertEquals(output, jobTest3.toString());
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        char firstCharac = jobTest3.toString().charAt(0);
+        char endCharac = jobTest3.toString().charAt(jobTest3.toString().length()-1);
+
+        assertTrue(firstCharac == endCharac);
+    }
+
+    @Test
+    public void testToStringHandlesEmptyString(){
+        jobTest3.getEmployer().setValue("");
+        jobTest3.getLocation().setValue("");
+        String output = "\nID: " + jobTest3.getId() + "\n" +
+                "Name : " + jobTest3.getName() + "\n" +
+                "Employer: Data not available\n" +
+                "Location: Data not available\n" +
+                "Position Type: " + jobTest3.getPositionType().getValue() + "\n" +
+                "Core Competency: " + jobTest3.getCoreCompetency().getValue() + "\n";
+        assertEquals(output, jobTest3.toString());
+    }
 }
