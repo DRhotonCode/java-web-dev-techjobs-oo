@@ -2,7 +2,7 @@ package org.launchcode.techjobs_oo;
 
 import java.util.Objects;
 
-public class JobFields {
+public abstract class  JobFields {
     private int id;
     private static int nextId = 1;
     private String value;
@@ -25,14 +25,14 @@ public class JobFields {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof JobFields)) return false;
-        JobFields that = (JobFields) o;
-        return id == that.id;
+        if (o == null || getClass() != o.getClass()) return false;
+        JobFields jobFields = (JobFields) o;
+        return id == jobFields.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, value);
     }
 
     public String getValue() {
@@ -46,4 +46,5 @@ public class JobFields {
     public int getId() {
         return id;
     }
+
 }
